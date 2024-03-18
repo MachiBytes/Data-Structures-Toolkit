@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Structures Toolkit - Stacks</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../styles/doodle.css">
+</head>
+<body class="doodle subpage-body">
+    <div class="border sidebar">
+        <div class="navigation">
+            <div class="back-button nav-button">
+                <a href="../index.html">
+                    <button>
+                        <img src="../assets/house_2186143.png" alt="" class="home-button">
+                        <label for="home-button">Back to Menu</label>
+                    </button>
+                </a>
+            </div>
+            <div class="nav-button">
+                <a href="arrays.html"><button>Arrays</button></a>
+            </div>
+            <div class="nav-button">
+                <a href="linkedlists.html"><button>Linked Lists</button></a>
+            </div>
+            <div class="nav-button active">
+                <a href="stacks.html"><button>Stacks</button></a>
+            </div>
+            <div class="nav-button">
+                <a href="queues.html"><button>Queues</button></a>
+            </div>
+            <div class="nav-button">
+                <a href="bst.html"><button>BST</button></a>
+            </div>
+        </div>
+        <hr>
+        <div class="job-queue"></div>
+    </div>
+    <div class="border actions-bar">
+        <button id="clear-button">clear stack</button>
+        <button id="push-button">push</button>
+        <button id="pop-button">pop</button>
+        <button id="edit-button">edit</button>
+        <div class="dropdown" id="push-dropdown">
+            <fieldset>  
+                <legend>push</legend>
+                <label for="value">value</label>
+                <input type="text" name="value" id="push-value">
+                <br>
+                <button id="push-submit" class="dropdown-button" type="button" name="button">apply</button>
+            </fieldset>
+        </div>
+        <div class="dropdown" id="edit-dropdown">
+            <fieldset>
+                <legend>edit</legend>
+                <label for="value">value</label>
+                <input type="text" name="value" id="insert-value">
+                <br>
+                <label for="index">index</label>
+                <input type="text" name="index" id="insert-index">
+                <br>
+                <button id="insert-submit" class="dropdown-button" type="button" name="button">apply</button>
+            </fieldset>
+        </div>
+    </div>
+    <canvas class="main-canvas"></canvas>
+    <script src="../src/canvas.js"></script>
+    <script type="module" src="../src/general.js"></script>
+</body>
+</html>

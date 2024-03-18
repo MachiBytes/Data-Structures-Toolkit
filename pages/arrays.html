@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Structures Toolkit - Arrays</title>
+    <link rel="stylesheet" href="../styles/doodle.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="doodle subpage-body">
+    <div class="border sidebar">
+        <div class="navigation">
+            <div class="back-button nav-button">
+                <a href="../index.html">
+                    <button>
+                        <img src="../assets/house_2186143.png" alt="" class="home-button">
+                        <label for="home-button">Back to Menu</label>
+                    </button>
+                </a>
+            </div>
+            <div class="nav-button active">
+                <a href="arrays.html"><button>Arrays</button></a>
+            </div>
+            <div class="nav-button">
+                <a href="linkedlists.html"><button>Linked Lists</button></a>
+            </div>
+            <div class="nav-button">
+                <a href="stacks.html"><button>Stacks</button></a>
+            </div>
+            <div class="nav-button">
+                <a href="queues.html"><button>Queues</button></a>
+            </div>
+            <div class="nav-button">
+                <a href="bst.html"><button>BST</button></a>
+            </div>
+        </div>
+        <hr>
+        <div class="job-queue"></div>
+    </div>
+    <div class="border actions-bar">
+        <button id="clear-button">clear array</button>
+        <button id="insert-button">insert</button>
+        <button id="remove-button">remove</button>
+        <button id="sort-button">sort</button>
+        <div class="dropdown" id="insert-dropdown">
+            <fieldset>
+                <legend>insert</legend>
+                <label for="value">value</label>
+                <input type="text" name="value" id="insert-value" required>
+                <br>
+                <label for="index">index</label>
+                <input type="text" name="index" id="insert-index" required>
+                <br>
+                <button id="insert-submit" class="dropdown-button" type="button" name="button">apply</button>
+            </fieldset>
+        </div>
+        <div class="dropdown" id="remove-dropdown">
+            <fieldset>
+                <legend>remove</legend>
+                <select name="remove-select" id="remove-select">
+                    <option value="index">index</option>
+                    <option value="value">value</option>
+                </select>
+                <input type="text" name="index" id="remove-input">
+                <br>
+                <button id="remove-submit" class="dropdown-button" type="button" name="button">apply</button>
+            </fieldset>
+        </div>
+        <div class="dropdown" id="sort-dropdown">
+            <fieldset>
+                <legend>sort</legend>
+                <select name="sort-direction" id="sort-select">
+                    <option value="ascending">ascending</option>
+                    <option value="descending">descending</option>
+                    <option value="reverse">reverse</option>
+                </select>
+                <button id="sort-submit">apply</button>
+            </fieldset>
+        </div>
+    </div>
+    <canvas class="main-canvas"></canvas>
+    <script type="module" src="../src/canvas.js"></script>
+    <script type="module" src="../src/general.js"></script>
+</body>
+</html>
