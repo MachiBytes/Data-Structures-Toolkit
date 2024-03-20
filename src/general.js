@@ -44,7 +44,7 @@ let create = () => {
 let clear = () => {
     let currentPage = getCurrentPage()
     let target = objects[currentPage]
-    // target.clear()
+    target.clear()
     target.show()
 }
 
@@ -93,11 +93,6 @@ let push = () => {
     let value = document.getElementById("push-value").value
     target.push(value)
 }
-let get = index => {
-    let currentPage = getCurrentPage()
-    let target = objects[currentPage]
-    target.get(index)
-}
 
 // Dropdowns
 try {
@@ -137,14 +132,6 @@ try {
 try {
     let popButton = document.getElementById("pop-button")
     popButton.addEventListener("click", () => {pop()})
-} catch (err) {}
-try {
-    let frontButton = document.getElementById("front-button")
-    frontButton.addEventListener("click", () => {get(0)})
-} catch (err) {}
-try {
-    let backButton = document.getElementById("back-button")
-    backButton.addEventListener("click", () => {get(-1)})
 } catch (err) {}
 
 // Submit Buttons for Dropdowns

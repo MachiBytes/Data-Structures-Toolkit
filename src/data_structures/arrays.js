@@ -14,7 +14,7 @@ class Cell {
         ctx.textAlign = "center"
         ctx.textBaseline = "middle"
         ctx.font = `18px ${fontFamily}`
-        ctx.fillText(this.index, this.x + 50, this.y - 10)
+        ctx.fillText(this.index, this.x + 50, this.y - 20)
         ctx.font = `36px ${fontFamily}`
         ctx.fillText(this.value, this.x + 50, this.y + 50)
         ctx.rect(this.x, this.y, 100, 100);
@@ -26,7 +26,7 @@ class Cell {
 
 export default class CustomArray {
     constructor(length) {
-        this.length = 5
+        this.length = 1
         this.elements = []
         this.components = []
         this.populate()
@@ -39,8 +39,8 @@ export default class CustomArray {
             this.elements[i] = undefined
             this.components[i] = new Cell(
                 i,
-                "_",
-                baseX + (100 * i),
+                "",
+                baseX + (110 * i),
                 baseY
             )
         }
@@ -55,7 +55,7 @@ export default class CustomArray {
 
     show() {
         for (let i=0; i<this.length; i++) {
-            let value = this.elements[i]==undefined ? "_" : this.elements[i]
+            let value = this.elements[i]==undefined ? "" : this.elements[i]
             this.components[i].value = value
         }
     }
