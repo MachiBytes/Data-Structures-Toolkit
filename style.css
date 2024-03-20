@@ -133,6 +133,7 @@ a {
     position: absolute;
     top: 60px;
     display: none;
+    background-color: rgb(247, 240, 232);
 }
 .actions-bar #create-dropdown {
     left: 0px;

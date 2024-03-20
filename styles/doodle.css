@@ -16,6 +16,7 @@
 }
 
 .doodle fieldset * {
+  background-color: rgb(247, 240, 232);
   max-width: calc(100vw - 100px);
 }
 
@@ -47,12 +48,14 @@
   border-style: solid;
   border-width: 10px 10px 10px 10px;
   border-image: url(button.svg) 10 10 10 10 stretch stretch;
+  background-color: rgb(247, 240, 232);
 }
 
 .doodle button, .doodle input, .doodle select, .doodle input[type="file"]::file-selector-button {
   border-style: solid;
   border-width: 10px 10px 10px 10px;
   border-image: url(button.svg) 10 10 10 10 stretch stretch;
+  background-color: rgb(247, 240, 232);
 }
 
 .doodle button {

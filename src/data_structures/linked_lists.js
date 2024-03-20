@@ -1,3 +1,53 @@
+const canvas = document.querySelector("canvas");
+const ctx = canvas.getContext("2d");
+const fontFamily = "Short Stack"
+
+class Cell {
+    constructor(index, value, x, y) {
+        // index, value, x, y
+        this.index = index
+        this.value = value
+        this.x = x
+        this.y = y
+        this.isNull=false
+        this.hasArrow=true
+        if (value == "head") {
+            this.isNull = true
+            this.hasArrow = true
+        } else if (value == "null") {
+            this.isNull = true
+            this.hasArrow = false
+        }
+    }
+    canvas_arrow(fromx, fromy, tox, toy) {
+        var headlen = 10; // length of head in pixels
+        var dx = tox - fromx;
+        var dy = toy - fromy;
+        var angle = Math.atan2(dy, dx);
+        ctx.moveTo(fromx, fromy);
+        ctx.lineTo(tox, toy);
+        ctx.lineTo(tox - headlen * Math.cos(angle - Math.PI / 6), toy - headlen * Math.sin(angle - Math.PI / 6));
+        ctx.moveTo(tox, toy);
+        ctx.lineTo(tox - headlen * Math.cos(angle + Math.PI / 6), toy - headlen * Math.sin(angle + Math.PI / 6));
+    }
+    draw() {
+        ctx.textAlign = "center"
+        ctx.textBaseline = "middle"
+        ctx.font = `36px ${fontFamily}`
+        ctx.fillText(this.value, this.x + 50, this.y + 50)
+
+        if (!this.isNull) {
+            ctx.font = `18px ${fontFamily}`
+            ctx.fillText(this.index, this.x + 50, this.y - 20)
+            ctx.rect(this.x, this.y, 100, 100);
+            ctx.strokeStyle = "black";
+            ctx.stroke();
+        }
+        this.canvas_arrow(this.x + 100, this.y + 50, this.x + 130, this.y + 50)
+    }
+}
+
+
 class Node {
     constructor(value, next=null) {
         this.value = value
@@ -8,8 +58,25 @@ class Node {
 export default class CustomLinkedList {
     constructor() {
         this.head = new Node("head")
-        this.length = 5
-        this.head.next = new Node("1", new Node("2", new Node("3", new Node("4", new Node("5")))))
+        this.length = 6
+        this.head.next = new Node("1", new Node("2", new Node("3", new Node("4", new Node("5", new Node("6"))))))
+        this.components = [new Cell(0, "head", 400, 300)]
+        this.populate()
+    }
+
+    populate() {
+        let baseX = 400
+        let baseY = 300
+        let currNode = this.head
+        for (var i=1; i<this.length+1; i++) {
+            currNode = currNode.next
+            this.components.push(new Cell(
+                i-1,
+                currNode.value,
+                baseX + (130 * i),
+                baseY
+            ))
+        }
     }
 
     checkIndex(index, mode) {
@@ -21,17 +88,15 @@ export default class CustomLinkedList {
     }
 
     show() {
-        let output = ""
-        let current = this.head.next
-        while (current != null) {
-            output += `${current.value} `
-            current = current.next
-        }
-        console.log(output)
+        this.components = [new Cell(0, "head", 400, 300)]
+        this.populate()
     }
 
     clear() {
-        this.head = new Node(null)
+        this.head = new Node("head")
+        this.length = 0
+        this.components = [new Cell(0, "head", 400, 300)]
+        this.populate()
     }
 
     insert(value, index) {
@@ -61,6 +126,7 @@ export default class CustomLinkedList {
             }
             console.log(currentNode.value)
             currentNode.next = currentNode.next.next
+            this.length -= 1
         } else if (typeof index == "undefined" && value != "") {
             let found = false
             let prevNode = null
@@ -76,6 +142,7 @@ export default class CustomLinkedList {
             if (found){
                 console.log(prevNode.value)
                 prevNode.next = currentNode.next
+                this.length -= 1
             }
             else {throw "Value not found."}
         }
@@ -87,9 +154,11 @@ export default class CustomLinkedList {
             let currX = this.head
             let currY = this.head
             for (let i=0; i<this.length-1; i++) {
+                console.log(i)
                 currX = currX.next
                 currY = currX.next
                 for (let j=i+1; j<this.length; j++) {
+                    console.log(i, j)
                     // Compare
                     if (currY.value < currX.value) {
                         let temp = currY.value
@@ -146,6 +215,7 @@ export default class CustomLinkedList {
                 existingElements.push(currNode.value)
             } else {
                 prevNode.next = currNode.next
+                this.length -= 1
                 continue
             }
             prevNode = currNode
