@@ -1,13 +1,48 @@
+const canvas = document.querySelector("canvas");
+const ctx = canvas.getContext("2d");
+const fontFamily = "Short Stack"
+
+class Cell {
+    constructor(index, value, x, y) {
+        // index, value, x, y
+        this.index = index
+        this.value = value
+        this.x = x
+        this.y = y
+    }
+    draw() {
+        ctx.textAlign = "center"
+        ctx.textBaseline = "middle"
+        ctx.font = `18px ${fontFamily}`
+        ctx.fillText(this.index, this.x + 50, this.y - 10)
+        ctx.font = `36px ${fontFamily}`
+        ctx.fillText(this.value, this.x + 50, this.y + 50)
+        ctx.rect(this.x, this.y, 100, 100);
+        ctx.strokeStyle = "black";
+        ctx.stroke();
+    }
+}
+
+
 export default class CustomArray {
     constructor(length) {
-        this.length = length
+        this.length = 5
         this.elements = []
+        this.components = []
         this.populate()
     }
 
     populate() {
+        let baseX = 400
+        let baseY = 300
         for (let i=0; i<this.length; i++) {
             this.elements[i] = undefined
+            this.components[i] = new Cell(
+                i,
+                "_",
+                baseX + (100 * i),
+                baseY
+            )
         }
     }
 
@@ -19,12 +54,16 @@ export default class CustomArray {
     }
 
     show() {
-        console.log(this.length, this.elements)
+        for (let i=0; i<this.length; i++) {
+            let value = this.elements[i]==undefined ? "_" : this.elements[i]
+            this.components[i].value = value
+        }
     }
 
     clear(length) {
         this.length = length
         this.elements = []
+        this.components = []
         this.populate()
         this.show()
     }
@@ -59,7 +98,7 @@ export default class CustomArray {
                 let i = low-1
 
                 for (let j=low; j<= high-1; j++) {
-                    if (arr[j]<pivot) {
+                    if (arr[j]<pivot || pivot==undefined) {
                         i++
                         [arr[i], arr[j]] = [arr[j], arr[i]]
                     }
@@ -69,7 +108,7 @@ export default class CustomArray {
                 return i+1
             }
 
-            if (low<high) {
+            if (low<high || high==undefined) {
                 let partitioning_index = partition(arr, low, high)
                 quickSort(arr, low, partitioning_index - 1)
                 quickSort(arr, partitioning_index + 1, high)
