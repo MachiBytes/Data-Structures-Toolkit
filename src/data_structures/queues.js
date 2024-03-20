@@ -90,6 +90,10 @@ export default class CustomQueue {
     pop() {
         this.queue.splice(0, 1)
         this.components.splice(0,1)
+        if (this.queue.length==0) {
+            this.queue.push(undefined)
+            this.populate()
+        }
         this.show()
     }
 
