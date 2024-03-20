@@ -16,7 +16,7 @@ export default class CustomQueue {
     }
 
     pop() {
-        this.queue.pop()
+        this.queue.splice(0, 1)
         this.show()
     }
 

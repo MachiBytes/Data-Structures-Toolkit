@@ -134,6 +134,9 @@ a {
     top: 60px;
     display: none;
 }
+.actions-bar #create-dropdown {
+    left: 0px;
+}
 .actions-bar #insert-dropdown {
     left: 150px;
 }

@@ -38,31 +38,25 @@
         <div class="job-queue"></div>
     </div>
     <div class="border actions-bar">
-        <button>clear tree</button>
-        <button id="insert-button">insert</button>
+        <button id="clear-button">clear tree</button>
+        <button id="push-button">insert</button>
         <button id="remove-button">remove</button>
-        <div class="dropdown" id="insert-dropdown">
+        <div class="dropdown" id="push-dropdown">
             <fieldset>
                 <legend>insert</legend>
                 <label for="value">value</label>
-                <input type="text" name="value" id="value">
+                <input type="text" name="value" id="push-value">
                 <br>
-                <label for="index">index</label>
-                <input type="text" name="index" id="index">
-                <br>
-                <button class="dropdown-button" type="button" name="button">apply</button>
+                <button id="push-submit" class="dropdown-button" type="button" name="button">apply</button>
             </fieldset>
         </div>
         <div class="dropdown" id="remove-dropdown">
             <fieldset>
                 <legend>remove</legend>
-                <select name="remove-select" id="remove-select">
-                    <option value="index">index</option>
-                    <option value="value">value</option>
-                </select>
-                <input type="text" name="index" id="index">
+                <labelfor="value">value</labelfor=>
+                <input type="text" name="value" id="remove-input">
                 <br>
-                <button class="dropdown-button" type="button" name="button">apply</button>
+                <button id="b-remove-submit" class="dropdown-button" type="button" name="button">apply</button>
             </fieldset>
         </div>
     </div>

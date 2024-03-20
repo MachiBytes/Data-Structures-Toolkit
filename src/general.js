@@ -34,6 +34,13 @@ let getCurrentPage = () => {
     return currentPage
 }
 
+let create = () => {
+    let currentPage = getCurrentPage()
+    let target = objects[currentPage]
+    let size = document.getElementById("create-value").value
+    target.clear(size)
+}
+
 let clear = () => {
     let currentPage = getCurrentPage()
     let target = objects[currentPage]
@@ -62,6 +69,13 @@ let remove = () => {
     } catch (err) {console.log(err)}
 }
 
+let bremove = () => {
+    let currentPage = getCurrentPage()
+    let targetObject = objects[currentPage]
+    let value = document.getElementById("remove-input").value
+    targetObject.remove(value)
+}
+
 let sort = () => {
     let currentPage = getCurrentPage()
     let target = objects[currentPage]
@@ -77,7 +91,7 @@ let push = () => {
     let currentPage = getCurrentPage()
     let target = objects[currentPage]
     let value = document.getElementById("push-value").value
-    target.push(value, -1)
+    target.push(value)
 }
 let get = index => {
     let currentPage = getCurrentPage()
@@ -87,8 +101,8 @@ let get = index => {
 
 // Dropdowns
 try {
-    let clearButton = document.getElementById("clear-button")
-    clearButton.addEventListener("click", () => {clear()})
+    let createButton = document.getElementById("create-button")
+    createButton.addEventListener("click", () => {showDiv("create-dropdown")})
 } catch(err) {}
 try {
     let insertButton = document.getElementById("insert-button")
@@ -113,6 +127,10 @@ try {
 
 // Function Buttons
 try {
+    let clearButton = document.getElementById("clear-button")
+    clearButton.addEventListener("click", () => {clear()})
+} catch(err) {}
+try {
     let makeUniqueButton = document.getElementById("make-unique")
     makeUniqueButton.addEventListener("click", () => {objects["linkedlists"].makeUnique()})
 } catch (err) {}
@@ -131,12 +149,20 @@ try {
 
 // Submit Buttons for Dropdowns
 try {
+    let createSubmit = document.getElementById("create-submit")
+    createSubmit.addEventListener("click", () => create())
+} catch (err) {}
+try {
     let insertSubmit = document.getElementById("insert-submit")
     insertSubmit.addEventListener("click", () => insert())
 } catch (err) {}
 try {
     let removeSubmit = document.getElementById("remove-submit")
     removeSubmit.addEventListener("click", () => {remove()})
+} catch (err) {}
+try {
+    let bremoveSubmit = document.getElementById("b-remove-submit")
+    bremoveSubmit.addEventListener("click", () => {bremove()})
 } catch (err) {}
 try {
     let sortSubmit = document.getElementById("sort-submit")

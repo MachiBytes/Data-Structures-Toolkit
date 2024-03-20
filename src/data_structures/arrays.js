@@ -1,33 +1,36 @@
 export default class CustomArray {
-    constructor() {
-        this.elements = ["1", "2", "3", "4", "5"]
+    constructor(length) {
+        this.length = length
+        this.elements = []
+        this.populate()
     }
 
-    checkIndex(index, mode) {
-        let limit = this.elements.length
-        if (mode == "remove") {limit -= 1}
+    populate() {
+        for (let i=0; i<this.length; i++) {
+            this.elements[i] = undefined
+        }
+    }
+
+    checkIndex(index) {
+        let limit = this.length-1
         if (index > limit) {
             throw `Index out of range. Please input an index from 0 to ${limit} only.`
         }
     }
 
     show() {
-        console.log(this.elements)
+        console.log(this.length, this.elements)
     }
 
-    clear() {
+    clear(length) {
+        this.length = length
         this.elements = []
+        this.populate()
+        this.show()
     }
 
     insert(value, index) {
-        this.checkIndex(index, "insert")
-        let oldValue = value
-        while (index < this.elements.length) {
-            oldValue = this.elements[index]
-            this.elements[index] = value
-            value = oldValue
-            index++
-        }
+        this.checkIndex(index)
         this.elements[index] = value
         this.show()
     }
@@ -39,22 +42,11 @@ export default class CustomArray {
         console.log(target)
         if (typeof value == "undefined" && index != "") {
             index = parseInt(index)
-            this.checkIndex(index, "remove")
-            this.elements.splice(index, 1)
+            this.checkIndex(index)
+            this.elements[index] = undefined
         } else if (typeof index == "undefined" && value != "") {
             let targetIndex = this.elements.indexOf(value)
-            let n = this.elements.length
-            if (targetIndex === -1) {
-                throw "Value does not exist in array."
-            }
-            if (targetIndex == n) {
-                this.elements.pop()
-                return
-            }
-            for (let i=targetIndex+1; i<n; i++) {
-                this.elements[i-1] = this.elements[i]
-            }
-            this.elements.pop()
+            this.elements[targetIndex] = undefined
         }
         this.show()
     }
