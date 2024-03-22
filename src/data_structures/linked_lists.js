@@ -29,6 +29,7 @@ class Cell {
         ctx.lineTo(tox - headlen * Math.cos(angle - Math.PI / 6), toy - headlen * Math.sin(angle - Math.PI / 6));
         ctx.moveTo(tox, toy);
         ctx.lineTo(tox - headlen * Math.cos(angle + Math.PI / 6), toy - headlen * Math.sin(angle + Math.PI / 6));
+        ctx.stroke()
     }
     draw() {
         ctx.textAlign = "center"
@@ -43,7 +44,9 @@ class Cell {
             ctx.strokeStyle = "black";
             ctx.stroke();
         }
-        this.canvas_arrow(this.x + 100, this.y + 50, this.x + 130, this.y + 50)
+        if (this.hasArrow) {
+            this.canvas_arrow(this.x + 100, this.y + 50, this.x + 130, this.y + 50)
+        }
     }
 }
 
@@ -58,15 +61,16 @@ class Node {
 export default class CustomLinkedList {
     constructor() {
         this.head = new Node("head")
-        this.length = 6
-        this.head.next = new Node("1", new Node("2", new Node("3", new Node("4", new Node("5", new Node("6"))))))
-        this.components = [new Cell(0, "head", 400, 300)]
+        this.length = 0
+        // this.length = 1
+        // this.head.next = new Node("1")
+        this.components = [new Cell(0, "head", 400, 200)]
         this.populate()
     }
 
     populate() {
         let baseX = 400
-        let baseY = 300
+        let baseY = 200
         let currNode = this.head
         for (var i=1; i<this.length+1; i++) {
             currNode = currNode.next
@@ -77,6 +81,12 @@ export default class CustomLinkedList {
                 baseY
             ))
         }
+        this.components.push(new Cell(
+            i-1,
+            "null",
+            baseX + (130 * i),
+            baseY
+        ))
     }
 
     checkIndex(index, mode) {
@@ -88,14 +98,14 @@ export default class CustomLinkedList {
     }
 
     show() {
-        this.components = [new Cell(0, "head", 400, 300)]
+        this.components = [new Cell(0, "head", 400, 200)]
         this.populate()
     }
 
     clear() {
         this.head = new Node("head")
         this.length = 0
-        this.components = [new Cell(0, "head", 400, 300)]
+        this.components = [new Cell(0, "head", 400, 200)]
         this.populate()
     }
 

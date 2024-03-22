@@ -34,7 +34,7 @@ export default class CustomArray {
 
     populate() {
         let baseX = 400
-        let baseY = 300
+        let baseY = 200
         for (let i=0; i<this.length; i++) {
             this.elements[i] = undefined
             this.components[i] = new Cell(
@@ -98,7 +98,7 @@ export default class CustomArray {
                 let i = low-1
 
                 for (let j=low; j<= high-1; j++) {
-                    if (arr[j]<pivot || pivot==undefined) {
+                    if (arr[j]<pivot && pivot==undefined) {
                         i++
                         [arr[i], arr[j]] = [arr[j], arr[i]]
                     }

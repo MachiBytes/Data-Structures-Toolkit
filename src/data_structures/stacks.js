@@ -23,7 +23,7 @@ class Cell {
 
 export default class CustomStack {
     constructor() {
-        this.stack = ["1", "2", "3"]
+        this.stack = [undefined]
         this.components = []
         this.populate()
         console.log(this.stack, this.components)
@@ -31,7 +31,7 @@ export default class CustomStack {
 
     populate() {
         let baseX = 750
-        let baseY = 300
+        let baseY = 400
         for (let i=0; i<this.stack.length; i++) {
             this.components[i] = new Cell(
                 this.stack[i]==undefined ? "" : this.stack[i],

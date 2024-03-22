@@ -13,6 +13,14 @@ export const objects = {
     "bst": new CustomBST()
 }
 
+window.addEventListener("load", window => {
+    objects["arrays"] = new CustomArray()
+    objects["linkedlists"] = new CustomLinkedList()
+    objects["queues"] = new CustomQueue()
+    objects["stacks"] = new CustomStack()
+    objects["bst"] = new CustomBST()
+})
+
 // FUNCTIONS
 // Actions Bar
 let showDiv = divId => {

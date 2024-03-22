@@ -18,13 +18,13 @@ a {
     justify-content: center;
 }
 .container {
-    width: 80%;
+    width: 90%;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 2em;
     position: relative;
-    top: 65px;
+    top: 40px;
 }
 .showcase {
     height: auto;
@@ -39,8 +39,8 @@ a {
     order: 1;
 }
 .player {
-    width: 320px;
-    height: 180px;
+    width: 450px;
+    height: 253px;
 }
 .link-subpage {
     width: 140px;
@@ -54,7 +54,7 @@ a {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 230px;
+    top: 300px;
 }
 
 .subpage-body {

@@ -41,7 +41,7 @@ export default class CustomQueue {
 
     populate() {
         let baseX = 400
-        let baseY = 300
+        let baseY = 200
         for (let i=0; i<this.queue.length; i++) {
             this.components[i] = new Cell(
                 this.queue[i]==undefined ? "" : this.queue[i],
