@@ -66,6 +66,15 @@ export default class BST {
         }
     }
 
+    clear() {
+        this.root = null
+        this.components = []
+    }
+
+    show() {
+        this.populate()
+    }
+
     populate() {
         let drawTree = (node, x, y) => {
             let height = this.getHeight(node)

@@ -25,8 +25,8 @@ class Cell {
 
 
 export default class CustomArray {
-    constructor(length) {
-        this.length = 1
+    constructor() {
+        this.length = 5
         this.elements = []
         this.components = []
         this.populate()
@@ -55,7 +55,11 @@ export default class CustomArray {
 
     show() {
         for (let i=0; i<this.length; i++) {
-            let value = this.elements[i]==undefined ? "" : this.elements[i]
+            let value = this.elements[i]
+            if (!value) {
+                value = ""
+            }
+            console.log(value)
             this.components[i].value = value
         }
     }
@@ -70,7 +74,7 @@ export default class CustomArray {
 
     insert(value, index) {
         this.checkIndex(index)
-        this.elements[index] = value
+        this.elements[index] = parseInt(value)
         this.show()
     }
 
@@ -78,16 +82,35 @@ export default class CustomArray {
         // Check if given key is index or value then implement the appropriate logic
         let value = target["value"]
         let index = target["index"]
-        console.log(target)
         if (typeof value == "undefined" && index != "") {
             index = parseInt(index)
             this.checkIndex(index)
             this.elements[index] = undefined
         } else if (typeof index == "undefined" && value != "") {
-            let targetIndex = this.elements.indexOf(value)
+            let targetIndex = this.elements.indexOf(parseInt(value))
             this.elements[targetIndex] = undefined
         }
         this.show()
+    }
+
+    getMin() {
+        let min = undefined
+        this.elements.forEach(element => {
+            if (element) {
+                if (!min || element < min) {min=element}
+            }
+        })
+        return min
+    }
+
+    getMax() {
+        let max = undefined
+        this.elements.forEach(element => {
+            if (element) {
+                if (!max || element > max) {max=element}
+            }
+        })
+        return max
     }
 
     sort(direction) {
@@ -98,7 +121,7 @@ export default class CustomArray {
                 let i = low-1
 
                 for (let j=low; j<= high-1; j++) {
-                    if (arr[j]<pivot && pivot==undefined) {
+                    if (arr[j]<pivot) {
                         i++
                         [arr[i], arr[j]] = [arr[j], arr[i]]
                     }
@@ -108,7 +131,7 @@ export default class CustomArray {
                 return i+1
             }
 
-            if (low<high || high==undefined) {
+            if (low<high) {
                 let partitioning_index = partition(arr, low, high)
                 quickSort(arr, low, partitioning_index - 1)
                 quickSort(arr, partitioning_index + 1, high)
@@ -122,13 +145,37 @@ export default class CustomArray {
             }
         }
         // Check which direction the sorting must be done
+        let max = this.getMax()
+        let min = this.getMin()
         switch (direction) {
             case "ascending":
+                for (let i=0; i<this.length; i++) {
+                    if (!this.elements[i]) {
+                        this.elements[i] = max+1
+                    }
+                }
+                console.log(this.elements)
                 quickSort(this.elements, 0, this.elements.length - 1)
+                console.log(this.elements)
+                for (let i=0; i<this.length; i++) {
+                    if (this.elements[i] == max+1) {
+                        this.elements[i] = undefined
+                    }
+                }
                 break
             case "descending":
+                for (let i=0; i<this.length; i++) {
+                    if (!this.elements[i]) {
+                        this.elements[i] = min-1
+                    }
+                }
                 quickSort(this.elements, 0, this.elements.length - 1)
                 reverse(this.elements)
+                for (let i=0; i<this.length; i++) {
+                    if (this.elements[i] == min-1) {
+                        this.elements[i] = undefined
+                    }
+                }
                 break
             case "reverse":
                 reverse(this.elements)
