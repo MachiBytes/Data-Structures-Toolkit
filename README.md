@@ -54,6 +54,6 @@ This project utilized JavaScript ES6 and HTML5 Canvas. To run this project, run 
   - [x] LinkedLists
   - [x] Stacks
   - [x] Queues
-  - [ ] BST
-- [ ] Implement Visualization
+  - [x] BST
+- [x] Implement Visualization
 - [ ] Implement Job Queues on the Sidebar
